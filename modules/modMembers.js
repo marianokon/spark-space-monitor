@@ -11,7 +11,7 @@
 ///////////////////////
 
 
-var config = require('./config.js');
+var config = require('./../config.js');
 var mokDebug = config.mokDebug;
 
 /////////////

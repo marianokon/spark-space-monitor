@@ -16,8 +16,8 @@
 //
 ///////////////////////
 
-var config = require('./config.js');
-var images = require('./images.js');
+var config = require('./../config.js');
+var images = require('./../images.js');
 var mokDebug = config.mokDebug;
 
 
