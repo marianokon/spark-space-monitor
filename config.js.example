@@ -18,7 +18,8 @@ exports.port= 10001  // PORT your APP will be listening to
 exports.route = "/SparkSpaceMonitor";
 
 exports.webhookUrlRequired = "false";  // Use false if you want the app to build the webhook from publicUrl + port + route
-                                       // Otherwise the webhookUrl will be used
-exports.token= "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // TOKEN de BOT (Get it from developers.ciscospak.com)
+                                       // Otherwise the webhookUrl defined in this config file will be used
+
+exports.token= "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // This is the BOT's TOKEN (Get it from developers.ciscospak.com)
 
 
