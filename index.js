@@ -6,18 +6,21 @@ var app = express();
 var request = require('request');
 var parseString = require('xml2js').parseString;
 var et = require('elementtree');
+//var _ = require('lodash');
 
 var images = require('./images.js');
 var config = require('./config.js');
 
 
-var modBoca          = require("./modBoca");          // Module with hidden features related to Boca
-var modShowTable     = require("./modShowTable");     // Module with hidden features related the complete Table of the APP
+//var modBoca          = require("./modBoca");          // Module with hidden features related to Boca
+//var modShowTable     = require("./modShowTable");     // Module with hidden features related the complete Table of the APP
+
 var modAvatar        = require("./modAvatar");        // Module with features to toggle the view of the AVATAR in 1:1 messages
 var modNotifiers     = require("./modNotifiers");     // Module with features to ADD/REMOVE Notifiers
 var modMembers       = require("./modMembers");       // Module with features to Show Members of the Space (no bots or monitors)
 var modNotifications = require("./modNotifications"); // Module with features to Notify when new people ENTERS and EXITS to a Space
-var modMiscelaneous  = require("./modMiscelaneous");  // Module with features to Notify when new people ENTERS and EXITS to a Space
+var modUtils         = require("./modUtils");         // Module with features (some hidden) to that cannot be clasified easily
+
 
 //////
 //
@@ -67,14 +70,14 @@ if (mokDebug) {
   console.log("File Al bot Default: ", images.fileAlBotDefault);
   console.log("\n\n");
 
-  console.log("Name: ",          config.name);
-  console.log("Web Hook URL: " , config.webhookUrl);
-  console.log("Web Hook URL 2: " , webhookUrl);
-  console.log("Token: " ,        config.token);
-  console.log("Port: " ,         config.port)
+  console.log("Name: ",                        config.name);
+  console.log("Web Hook URL (Defined)    : " , config.webhookUrl);
+  console.log("Web Hook URL (Constructed): " , webhookUrl);
+  console.log("Token: " ,                      config.token);
+  console.log("Port: " ,                       config.port)
   console.log("\n\n");
 
-  console.log("mokDebug: " ,         config.mokDebug)
+  console.log("mokDebug: " ,                   config.mokDebug)
   console.log("\n\n");
 }
 
@@ -144,31 +147,31 @@ flint.on('personExits',  function(bot, person, id) { modNotifications.personExit
 // Now we move on to the MODIFIERS that I will respond to (flint.hears)
 //
 
-flint.hears('/boca',      function(bot, trigger) { modBoca.app(bot, trigger)                       });  // Hidden feature to test if this works
+flint.hears('/boca',      function(bot, trigger) { modUtils.boca(bot, trigger)                     });  // Hidden feature to test if this works
 
-flint.hears('/showtable', function(bot, trigger) { modShowTable.app(bot, trigger, connection)      });  // Hidden feature that will show ALL the Table
+flint.hears('/showtable', function(bot, trigger) { modUtils.showtable(bot, trigger, connection)    });   // Hidden feature that will show ALL the Table
 
-flint.hears('/avatar',    function(bot, trigger) { modAvatar.avatar(bot, trigger, connection)      });  // Show me the AVATAR of the user when sending me 1:1 messages
+flint.hears('/avatar',    function(bot, trigger) { modAvatar.avatar(bot, trigger, connection)      });   // Show me the AVATAR of the user when sending me 1:1 messages
 
-flint.hears('/noavatar',  function(bot, trigger) { modAvatar.noavatar(bot, trigger, connection)    });  // Do NOT Show me the AVATAR of the user when sending me 1:1 messages
+flint.hears('/noavatar',  function(bot, trigger) { modAvatar.noavatar(bot, trigger, connection)    });   // Do NOT Show me the AVATAR of the user when sending me 1:1 messages
 
-flint.hears('/addme',     function(bot, trigger) { modNotifiers.addme(bot, trigger, connection)    });  // RemoveMe from the list of people that receives notifications
+flint.hears('/addme',     function(bot, trigger) { modNotifiers.addme(bot, trigger, connection)    });   // RemoveMe from the list of people that receives notifications
 
-flint.hears('/removeme',  function(bot, trigger) { modNotifiers.removeme(bot, trigger, connection) });  // RemoveMe from the list of people that receives notifications
+flint.hears('/removeme',  function(bot, trigger) { modNotifiers.removeme(bot, trigger, connection) });   // RemoveMe from the list of people that receives notifications
 
-flint.hears('/showme',    function(bot, trigger) { modNotifiers.showme(bot, trigger, connection)   });  // ShowMe the list of people that receives notifications
+flint.hears('/showme',    function(bot, trigger) { modNotifiers.showme(bot, trigger, connection)   });   // ShowMe the list of people that receives notifications
 
-flint.hears('/members',   function(bot, trigger) { modMembers.app(bot, trigger, flint)             });  // Show the members of the Space (no bots and no monitors)
+flint.hears('/members',   function(bot, trigger) { modMembers.app(bot, trigger, flint)             });   // Show the members of the Space (no bots and no monitors)
 
-flint.hears('/ayuda',     function(bot, trigger) { modMiscelaneous.ayuda(bot, trigger)             });  // Show the HELP information in Spanish (AYUDA)
+flint.hears('/ayuda',     function(bot, trigger) { modUtils.ayuda(bot, trigger)                    });   // Show the HELP information in Spanish (AYUDA)
 
-flint.hears('/help',      function(bot, trigger) { modMiscelaneous.help(bot, trigger)              });  // Show the HELP information in English
+flint.hears('/help',      function(bot, trigger) { modUtils.help(bot, trigger)                     });   // Show the HELP information in English
 
-flint.hears('/hola',      function(bot, trigger) { modMiscelaneous.hola(bot, trigger)              });  // Show the HELLO greeting in Spanish (HOLA)
+flint.hears('/hola',      function(bot, trigger) { modUtils.hola(bot, trigger)                     });   // Show the HELLO greeting in Spanish (HOLA)
 
-flint.hears('/hello',     function(bot, trigger) { modMiscelaneous.hello(bot, trigger)             });  // Show the HELLO greeting
+flint.hears('/hello',     function(bot, trigger) { modUtils.hello(bot, trigger)                    });   // Show the HELLO greeting
 
-flint.hears('/foto',      function(bot, trigger) { modMiscelaneous.foto(bot, trigger)              });  // Show the PHOTO greeting (Testing purposes)
+flint.hears('/foto',      function(bot, trigger) { modUtils.foto(bot, trigger)                     });   // Show the PHOTO greeting (Testing purposes)
 
 
 
