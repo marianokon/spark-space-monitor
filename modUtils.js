@@ -71,12 +71,14 @@ module.exports.help = function(bot, trigger) {
   mensajeAlBot += '\n\n 2. I will send a 1:1 message to any person that requested to be notified';
   mensajeAlBot += '\n\nYou can use this bot in multiple Spaces (just add me!) and multiple people can request to be notified';
   mensajeAlBot += '\n\nYou communicate with me by, within the Space, include my name and any of the following modifers:' ;
-  mensajeAlBot += '\n\n 1.** /addme**    - ADDs your name to the list of people notified';
-  mensajeAlBot += '\n\n 2.** /removeme** - REMOVEs your name from the list of people notified';
-  mensajeAlBot += '\n\n 3.** /showme**   - SHOWs you the list of people that will be notified';
-  mensajeAlBot += '\n\n 4.** /members**  - Shows who is in this Space (with no bots, only people)' ;
-  mensajeAlBot += '\n\n 5.** /hello**    - Will greet you with a simple message';
-  mensajeAlBot += '\n\n 6.** /help**     - Shows you this help screen';
+  mensajeAlBot += '\n\n1. **/addme**    - ADDs your name to the list of people notified';
+  mensajeAlBot += '\n\n2. **/removeme** - REMOVEs your name from the list of people notified';
+  mensajeAlBot += '\n\n3. **/showme**   - SHOWs you the list of people that will be notified';
+  mensajeAlBot += '\n\n4. **/avatar**   - Includes the avatar of the person when you get notified ';
+  mensajeAlBot += '\n\n5. **/noavatar** - Does NOT Include the avatar of the person when you get notified';
+  mensajeAlBot += '\n\n6. **/members**  - Shows who is in this Space (with no bots, only people)' ;
+  mensajeAlBot += '\n\n7. **/hello**    - Will greet you with a simple message';
+  mensajeAlBot += '\n\n8. **/help**     - Shows you this help screen';
 
   mensajeAlBot += '\n\n**ENJOY!**';
 
