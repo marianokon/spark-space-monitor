@@ -12,9 +12,6 @@ var images = require('./images.js');
 var config = require('./config.js');
 
 
-//var modBoca          = require("./modBoca");          // Module with hidden features related to Boca
-//var modShowTable     = require("./modShowTable");     // Module with hidden features related the complete Table of the APP
-
 var modAvatar        = require("./modAvatar");        // Module with features to toggle the view of the AVATAR in 1:1 messages
 var modNotifiers     = require("./modNotifiers");     // Module with features to ADD/REMOVE Notifiers
 var modMembers       = require("./modMembers");       // Module with features to Show Members of the Space (no bots or monitors)
