@@ -1,0 +1,24 @@
+
+
+// Set to true to see TONS of info on STDOUT
+exports.mokDebug = true;
+
+// Parameters used in mySQL
+exports.mySqlHost = "localhost";     // Use the IP ADDRESS or URI of your MySQL host
+exports.mySqlUser = "user";          // mySql USER
+exports.mySqlPassword = "password";  // mySql PASSWORD
+exports.mySqlDB = "database";           // mySql DATABASE to be used
+
+// Parameters used in FLINT
+exports.name = "Cisco Spark Space Monitor bot using Flint";  // Change it to anything you want
+
+exports.webhookUrl = "http://marianokon.io:10001/SparkSpaceMonitor";   // Real URL in Production
+exports.publicUrl = "http://marianokon.io";  // URI for your WebHook
+exports.port= 10001  // PORT your APP will be listening to
+exports.route = "/SparkSpaceMonitor";
+
+exports.webhookUrlRequired = "false";  // Use false if you want the app to build the webhook from publicUrl + port + route
+                                       // Otherwise the webhookUrl will be used
+exports.token= "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // TOKEN de BOT (Get it from developers.ciscospak.com)
+
+
