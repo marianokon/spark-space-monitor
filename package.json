@@ -1,7 +1,7 @@
 {
-  "name": "spark-st",
+  "name": "spark-space-monitor",
   "version": "1.0.0",
-  "description": "This implements an integration between Cisco Spark and BOSE SoundTouch speakers",
+  "description": "Cisco Spark Space Monitor",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.16.1",
@@ -19,8 +19,6 @@
   "keywords": [
     "Cisco",
     "Spark",
-    "SoundTouch",
-    "Bose",
     "OKON"
   ],
   "author": "Mariano O'Kon",

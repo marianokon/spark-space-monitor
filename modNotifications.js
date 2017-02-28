@@ -188,8 +188,6 @@ module.exports.personExits = function(bot, person, connection) {
             bot.dm(result.personEmail, { markdown: mensajeAlBot, file: person.avatar  });
           };
 
-//        bot.dm(result.personEmail, { markdown: mensajeAlBot, file: person.avatar });
-
         })
      }
   })

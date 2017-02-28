@@ -6,7 +6,6 @@ var app = express();
 var request = require('request');
 var parseString = require('xml2js').parseString;
 var et = require('elementtree');
-//var _ = require('lodash');
 
 var images = require('./images.js');
 var config = require('./config.js');
