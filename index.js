@@ -12,11 +12,11 @@ var images = require('./images.js');
 var config = require('./config.js');
 
 
-var modAvatar        = require("./modAvatar");        // Module with features to toggle the view of the AVATAR in 1:1 messages
-var modNotifiers     = require("./modNotifiers");     // Module with features to ADD/REMOVE Notifiers
-var modMembers       = require("./modMembers");       // Module with features to Show Members of the Space (no bots or monitors)
-var modNotifications = require("./modNotifications"); // Module with features to Notify when new people ENTERS and EXITS to a Space
-var modUtils         = require("./modUtils");         // Module with features (some hidden) to that cannot be clasified easily
+var modAvatar        = require("./modules/modAvatar");        // Module with features to toggle the view of the AVATAR in 1:1 messages
+var modNotifiers     = require("./modules/modNotifiers");     // Module with features to ADD/REMOVE Notifiers
+var modMembers       = require("./modules/modMembers");       // Module with features to Show Members of the Space (no bots or monitors)
+var modNotifications = require("./modules/modNotifications"); // Module with features to Notify when new people ENTERS and EXITS to a Space
+var modUtils         = require("./modules/modUtils");         // Module with features (some hidden) to that cannot be clasified easily
 
 
 //////
