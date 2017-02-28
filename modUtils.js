@@ -1,15 +1,20 @@
 
 
-
-//////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //
-// modMiscalenous sub-module: Code for the /ayuda and /help modifiers
+// modUtils sub-module: Code for the different features (some hidden):
+//                      1. Ayuda       - Send the HELP information in Spanish
+//                      2. Help        - Send the HELP information in English
+//                      3. Hello       - Send the HELLO greeting
+//                      4. Hola        - Send the HELLO greeting in Spanish
+//                      5. Photo       - Send a Photo (testing purposes)
+//                      6. Boca        - Hidden modifier to test the app
+//                      7. Show Tables - Hidden modifier to send the TABLE as a 1:1 Message
 //
 // Part of the SparkSpaceMonitor APP
 //
 ///////////////////////
-
 
 var config = require('./config.js');
 var images = require('./images.js');
@@ -18,7 +23,11 @@ var mokDebug = config.mokDebug;
 
 
 
-// say ayuda
+///////////////////////////////////////////////
+//
+// Show Ayuda (say ayuda)
+//
+
 
 module.exports.ayuda = function(bot, trigger) {
 
@@ -45,7 +54,11 @@ module.exports.ayuda = function(bot, trigger) {
 
 
 
-// say help
+///////////////////////////////////////////////
+//
+// Show Help (say help)
+//
+
 module.exports.help = function(bot, trigger) {
 
 //flint.hears('/help', function(bot, trigger) {
@@ -81,7 +94,11 @@ module.exports.help = function(bot, trigger) {
 
 
 
-// say hello
+///////////////////////////////////////////////
+//
+// Show Hello (say hello)
+//
+
 module.exports.hello = function(bot, trigger) {
 
 //flint.hears('/hello', function(bot, trigger) {
@@ -96,7 +113,11 @@ module.exports.hello = function(bot, trigger) {
 
 
 
-// say hola
+///////////////////////////////////////////////
+//
+// Show Hola (say hola)
+//
+
 module.exports.hola = function(bot, trigger) {
 
 //flint.hears('/hola', function(bot, trigger) {
@@ -109,7 +130,11 @@ module.exports.hola = function(bot, trigger) {
 
 
 
-// say foto
+///////////////////////////////////////////////
+//
+// Show Photo (say foto)
+//
+
 module.exports.foto = function(bot, trigger) {
 
 //flint.hears('/foto', function(bot, trigger) {
@@ -118,4 +143,66 @@ module.exports.foto = function(bot, trigger) {
     files: ['http://blog.marianokon.com/wp-content/uploads/2017/02/SparkMonitor-bot.jpg']
   });
 };
+
+
+
+
+
+///////////////////////////////////////////////
+//
+// Boca (say boca)
+//
+
+module.exports.boca = function(bot, trigger) {
+
+  console.log('\n\nYa estamos adentro de Boca');
+
+  bot.say({
+    markdown: 'Hola ' + trigger.personDisplayName + '!\n\nSolo para que sepas que **Boca Juniors** es el UNICO GRANDE de la Argentina que NUNCA SE FUE A LA B!',
+    files: ['http://k30.kn3.net/taringa/F/0/A/1/E/4/MisticaSB/658.jpg']
+  });
+};
+
+
+
+
+
+
+///////////////////////////////////////////////
+//
+// Show Table (say showtable)
+//
+
+
+module.exports.showtable = function(bot, trigger, connection) {
+
+  if ( mokDebug ) console.log('\n\nYa estamos adentro de ShowTable');
+
+  querySQL = "SELECT * FROM SparkSpaceMonitor  ORDER BY roomTitle ";
+
+  if ( mokDebug ) console.log("\n\nSQL Query: " + querySQL);
+
+  var mensajeAlBot = "#Esta es la Tabla: \n\n";
+  var count = 1;
+
+  connection.query(querySQL, function (error, results, fields) {
+     if (error) throw error;
+
+     if ( results.length > 0 ) {
+        results.forEach(function(result) {
+          if (mokDebug) console.log(result.personDisplayName);
+          mensajeAlBot += count++ + ". " + result.roomTitle + ": " + result.personDisplayName + " (" + result.personEmail + ") ID: " + result.id + "\n";
+        })
+     };
+
+     if ( mokDebug ) console.log("\n\nMensaje al bot: " + mensajeAlBot);
+
+     bot.dm(trigger.personEmail , { markdown: mensajeAlBot });
+
+
+  })
+};
+
+
+
 
