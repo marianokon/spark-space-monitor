@@ -38,20 +38,28 @@ module.exports.personEnters = function(bot, person, connection) {
   }
 
   var mensajeAlBot = "";
+  var mensajeAlBot2 = "";
   var fileAlBot = images.fileAlBotDefault;
   mensajeAlBot = mensajeAlBot + 'Welcome **' + person.displayName + '**!';
-  mensajeAlBot += "\n\nThis Space is enhanced by the **Spark Space Monitor bot**";
-  mensajeAlBot += "\n\nIf you say **/help** to me I will tell you what I can do.";
-  mensajeAlBot += "\n\nIn Spark the easiest way to send me a message is to start writing my name ";
-  mensajeAlBot += "and, after the 3rd letter, select my name when Spark offers it (if you just write my name it will **not** work)";
-  mensajeAlBot += "\n\nAn alternative is to write **@** and then select my name from the drop-down list that will appear.";
+  mensajeAlBot2 = mensajeAlBot + "\n\nThe Space **'" + bot.room.title + "'**, which you just joined, is enhanced by the **Spark Space Monitor bot**";
+  mensajeAlBot2 += "\n\nIf you say **/help** to me I will tell you what I can do.";
+  mensajeAlBot2 += "\n\nIn Spark the easiest way to send me a message is to start writing my name ";
+  mensajeAlBot2 += "and, after the 3rd letter, select my name when Spark offers it (if you just write my name it will **not** work)";
+  mensajeAlBot2 += "\n\nAn alternative is to write **@** and then select my name from the drop-down list that will appear.";
 
   if (mokDebug) {  console.log('Person avatar: ' + person.avatar) };
 
+  var personEmail = person.emails[0];
 
-  if ( !person.avatar.trim() ) { bot.say( { markdown: mensajeAlBot } )
+
+  if ( !person.avatar.trim() ) {
+
+       bot.say( { markdown: mensajeAlBot } );
+       bot.dm(personEmail, { markdown: mensajeAlBot2 })
+
      } else {
-       bot.say( { markdown: mensajeAlBot, file: person.avatar } )
+       bot.dm( personEmail , { markdown: mensajeAlBot2, file: 'http://blog.marianokon.com/wp-content/uploads/2017/02/SparkMonitor-bot.jpg' } );
+       bot.say( { markdown: mensajeAlBot, file: person.avatar } );
    };
 
   mensajeAlBot = '¡Acaba de entrar ' + person.displayName + ' (' + person.emails + ') al Space **' + bot.room.title + '**!';
